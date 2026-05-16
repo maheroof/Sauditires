@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saudi Tires Company | Premium Cinematic Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050505;
+  --panel: rgba(17, 17, 17, 0.75);
+  --line: rgba(255, 255, 255, .08);
+  --muted: #a6a6a6;
+  --text: #f5f5f5;
+  --red: #d61f26;
+  --red2: #ff3b30;
+  --gold: #b99245;
+  --shadow: 0 20px 80px rgba(0,0,0,.6);
+  --radius: 24px;
+  --max: 1240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  height: 500vh; /* Determines scroll depth for tracking video duration */
+}
+
+/* 🎥 Fixed Video Layer */
+#cinematic-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+  background: #000;
+}
+
+#bg-video-backbone {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45) contrast(1.1);
+}
+
+/* 🧭 Glassmorphism Navigation */
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.navwrap {
+  width: min(calc(100% - 24px), var(--max));
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border: 1px solid var(--line);
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+.brand { font-weight: 900; letter-spacing: -0.5px; font-size: 20px; }
+.brand .accent { color: var(--red2); }
+.brand .gold-txt { color: var(--gold); font-size: 11px; tracking: 2px; display: block; font-weight: 500;}
+
+/* 📄 Scroll Containers */
+.narrative-container {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.narrative-stage {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.narrative-stage.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.glass-bento {
+  background: var(--panel);
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--line);
+  padding: 48px;
+  border-radius: var(--radius);
+  max-width: 680px;
+  width: calc(100% - 32px);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.lead { color: var(--muted); font-size: 17px; line-height: 1.6; }
+
+/* 🔴 Interface Accents */
+#custom-cursor {
+  width: 8px; height: 8px; background: var(--red2);
+  border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
+  box-shadow: 0 0 20px var(--red2); transition: transform 0.1s ease;
+}
+</style>
+</head>
+<body>
+
+<div id="custom-cursor"></div>
+
+<nav class="nav">
+  <div class="navwrap">
+    <div class="brand">
+      <span class="accent">SAUDI</span> TIRES
+      <span class="gold-txt">COMPANY</span>
+    </div>
+    <div style="color: var(--muted); font-size: 13px;">🇸🇦 Kingdom of Saudi Arabia</div>
+  </div>
+</nav>
+
+<div id="cinematic-viewport">
+  <video id="bg-video-backbone" preload="auto" muted playsinline loop>
+    <source src="Tire_tread_rotating_in_studio_202605160535.mov" type="video/mp4">
+  </video>
+</div>
+
+<div class="narrative-container">
+  <section class="narrative-stage active">
+    <div class="glass-bento">
+      <h2 class="h2">Engineered for <span style="color: var(--red2)">Extreme Performance</span></h2>
+      <p class="lead">Premium tactical distribution channels handling high-stress commercial and luxury tire compounds optimized for desert thermal tracks.</p>
+    </div>
+  </section>
+
+  <section class="narrative-stage">
+    <div class="glass-bento">
+      <h2 class="h2" style="color: var(--gold)">Macro Tread Depth Control</h2>
+      <p class="lead">Our 2026 inventory profiles leverage G.S.O certified durability ratings, shielding fleets from excessive wear across high-friction pathways.</p>
+    </div>
+  </section>
+
+  <section class="narrative-stage">
+    <div class="glass-bento">
+      <h2 class="h2">Dammam & Riyadh <span style="color: var(--red)">Logistics Hubs</span></h2>
+      <p class="lead">Direct connection tracking pipelines running straight to your industrial fleets with full supply safety assurance infrastructure.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const video = document.getElementById('bg-video-backbone');
+const stages = document.querySelectorAll('.narrative-stage');
+const cursor = document.getElementById('custom-cursor');
+
+// 🧮 Smooth Scroll-Driven Frame Scrubbing
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollFraction = Math.min(Math.max(scrollTop / maxScroll, 0), 0.99);
+
+  if (video.duration) {
+    video.currentTime = video.duration * scrollFraction;
+  }
+
+  // Active Overlay Step Management
+  const currentStageIndex = Math.floor(scrollFraction * stages.length);
+  stages.forEach((stage, index) => {
+    if (index === currentStageIndex) {
+      stage.classList.add('active');
+    } else {
+      stage.classList.remove('active');
+    }
+  });
+});
+
+// 🔴 System Cursor Sync
+document.addEventListener('mousemove', (e) => {
+  cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+});
+</script>
+</body>
+</html>
